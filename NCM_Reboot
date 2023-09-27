@@ -1,0 +1,28 @@
+import requests
+
+# variables
+url = 'https://www.cradlepointecm.com/api/v2/reboot_activity/'
+router_id = ''
+
+# JSON Headers for NCM
+headers = {
+    'X-CP-API-ID': 'xxx',
+    'X-CP-API-KEY': 'xxxx',
+    'X-ECM-API-ID': 'xxxx',
+    'X-ECM-API-KEY': 'xxxx',
+    'Content-Type': 'application/json'
+}
+
+# payload
+data = '{"router":"/api/v2/routers/' + router_id + '/"}'
+
+# get routers
+req = requests.post(url, data=data, headers=headers)
+routers_resp = req.json()
+print(routers_resp)
+
+
+if req.status_code == 201:
+    print('POST request successful')
+else:
+    print(f'Error in POST request. Status code: {req.status_code}')
